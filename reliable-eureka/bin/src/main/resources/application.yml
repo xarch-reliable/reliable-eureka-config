@@ -1,0 +1,30 @@
+spring: 
+  application: 
+    name: reliable-eureka
+server: 
+  port: 8000
+eureka: 
+  instance: 
+    #hostname: localhost #设置注册中心主页地址[默认设置]
+    prefer-ip-address: true #开启ip注册
+  client: 
+    register-with-eureka: true #表示是否将自己注册到 Eureka Server 
+    fetch-registry: true #表示是否从 Eureka Server 获取注册信息 
+    serviceUrl: 
+      defaultZone: http://47.92.98.17:8000/eureka/,http://47.104.89.2:8000/eureka/
+      #默认是 http://localhost:8761/eureka/
+      #defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+---
+spring:
+  profiles: server1 #启动版本控制
+eureka: 
+  instance: 
+    ip-address: 47.92.98.17 #ip声明
+    hostname: 47.92.98.17
+---
+spring:
+  profiles: server2
+eureka: 
+  instance:
+    ip-address: 47.104.89.2
+    hostname: 47.104.89.2

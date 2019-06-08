@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/xarch-reliable/reliable-config-repository # 配置git仓库的地址
+          search-paths: reliable-config-repo/** # git仓库地址下的相对地址，可以配置多个，用,分割。
+          username: 
+          password: 
+          #skip-ssl-validation: true
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+  rabbitmq:
+    host: 39.98.38.238
+    port: 8310
+    username: guest
+    password: guest
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh #触发bus消息通知刷新
+logging:
+  file: reliable-logs/spring.log
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: INFO
